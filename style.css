@@ -1,0 +1,125 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f9f9f9;
+  padding: 20px;
+}
+
+/* GRID PRINCIPAL */
+#number-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 8px;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+/* Botões */
+button.number {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  background: #eee;
+  transition: 0.3s;
+}
+
+button.number.selected {
+  background: #ff9800;
+  color: white;
+}
+
+button.number.taken {
+  background: #999;
+  color: white;
+  cursor: not-allowed;
+}
+
+/* Área de input */
+#input-area {
+  margin: 20px;
+}
+
+/* Toast (alerta visual) */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #333;
+  color: white;
+  padding: 15px;
+  border-radius: 6px;
+  display: none;
+  animation: fadeInOut 3s ease;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* 🔹 Responsividade */
+@media (max-width: 768px) {
+  #number-grid {
+    grid-template-columns: repeat(5, 1fr); /* tablets */
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  #number-grid {
+    grid-template-columns: repeat(3, 1fr); /* celular */
+    max-width: 300px;
+  }
+}
+
+/* Estilo para a mensagem bíblica */
+.bible-message {
+  margin-top: 20px;
+  padding: 15px;
+  border-left: 5px solid #ff9800;
+  background: #fff8e6;
+  border-radius: 8px;
+}
+
+.bible-message blockquote {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.bible-message span {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  font-weight: normal;
+  color: #666;
+}
+
+.thankyou-card {
+  background: #fff;
+  padding: 20px;
+  margin: 30px auto;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.thankyou-card h2 {
+  color: #ff9800;
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+}
+
+.thankyou-card p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}

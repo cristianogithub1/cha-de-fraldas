@@ -1,0 +1,15 @@
+{
+  "name": "cha-de-fraldas",
+  "version": "1.0.0",
+  "description": "Lista interativa para chá de fraldas com Firebase",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000"
+  },
+  "keywords": [],
+  "author": "Cristiano Chagas Barreto",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
