@@ -6,47 +6,54 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🎉 Chá de Fraldas do Bebê 🎉</h1>
-  <p>Escolha um número disponível e digite seu nome para confirmar presença!</p>
+  <h1>🎉 Chá de Fraldas do BEBÊ 🎉</h1>
+  <p>Escolha os números disponíveis e digite seu nome para confirmar sua colaboração !</p>
+  <p><strong>E Para quem não puder ou não quiser contribuir com a fralda, pode fazer um pix com o valor!</strong></p>
 
+  <!-- 🔑 PIX CARD -->
+  <div class="pix-card">
+    <p>💳 Contribua com o Chá de Fraldas através da nossa chave PIX:</p>
+    <strong id="pixKey">22998448059</strong>
+    <button id="copyPixBtn">📋 Copiar chave PIX</button>
+    <span id="pixMessage" class="copy-message"></span>
+  </div>
+
+  <!-- LISTA DE NÚMEROS -->
   <div id="number-grid"></div>
 
+  <!-- ÁREA INPUT -->
   <div id="input-area">
     <input type="text" id="guestName" placeholder="Digite seu nome">
     <button id="confirmBtn">Confirmar Presença</button>
   </div>
 
+  <!-- PAINEL ADMIN -->
   <h2>Painel de Confirmações ✅</h2>
   <ul id="admin-panel"></ul>
 
   <!-- Toast container -->
   <div id="toast"></div>
 
-  <script type="module" src="script.js"></script>
-
+  <!-- CARD DE AGRADECIMENTO -->
   <div class="thankyou-card">
-
-  <h2>💝 Muito obrigado!</h2>
-
-  <p>
-    Somos imensamente gratos por cada gesto de carinho, cada presente e cada oração.  
-    O nascimento de uma criança é um momento único e especial, e ter pessoas queridas
-    compartilhando desse momento torna tudo ainda mais significativo.
-  </p>
-   
-  <div class="bible-message">
-  <blockquote>
-    "Os filhos são herança do Senhor, uma recompensa que Ele dá."  
-    <br> <span>— Salmos 127:3</span>
-  </blockquote>
+    <h2>💝 Muito obrigado!</h2>
+    <p>
+      Somos imensamente gratos por cada gesto de carinho, cada presente e cada oração.  
+      O nascimento de uma criança é um momento único e especial, e ter pessoas queridas
+      compartilhando desse momento torna tudo ainda mais significativo.
+    </p>
+    <div class="bible-message">
+      <blockquote>
+        "Os filhos são herança do Senhor, uma recompensa que Ele dá."  
+        <br> <span>— Salmos 127:3</span>
+      </blockquote>
+    </div>
+    <p>
+      Este bebê é uma bênção aguardada por todos nós, um presente de Deus para nossas vidas.  
+      Que ele venha trazer luz, alegria e renovação em cada coração. 💖
+    </p>
   </div>
 
-  <p>
-    Este bebê é uma bênção aguardada por todos nós, um presente de Deus para nossas vidas.  
-    Que ele venha trazer luz, alegria e renovação em cada coração. 💖
-  </p>
-
-</div>
-
+  <script type="module" src="script.js"></script>
 </body>
 </html>

@@ -15,7 +15,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-let selectedNumber = null;
+// 👉 permitir múltiplos números
+let selectedNumbers = [];
 
 // Criar grid com tamanhos de fraldas
 const grid = document.getElementById("number-grid");
@@ -29,26 +30,32 @@ for (let i = 1; i <= 100; i++) {
   const btn = document.createElement("button");
   btn.textContent = `${i} (${label})`;
   btn.classList.add("number");
-  btn.addEventListener("click", () => selectNumber(i, btn, label));
+  btn.addEventListener("click", () => toggleNumber(i, btn, label));
   grid.appendChild(btn);
 }
 
-// Selecionar número
-function selectNumber(num, btn, label) {
+// Alternar seleção de múltiplos números
+function toggleNumber(num, btn, label) {
   if (btn.classList.contains("taken")) {
     showToast("Esse número já foi escolhido ❌");
     return;
   }
-  document.querySelectorAll("button.number").forEach(b => b.classList.remove("selected"));
-  btn.classList.add("selected");
-  selectedNumber = { num, label };
+  if (selectedNumbers.some(sel => sel.num === num)) {
+    // se já estava selecionado, remove
+    selectedNumbers = selectedNumbers.filter(sel => sel.num !== num);
+    btn.classList.remove("selected");
+  } else {
+    // adiciona novo número
+    selectedNumbers.push({ num, label });
+    btn.classList.add("selected");
+  }
 }
 
 // Confirmar presença
 document.getElementById("confirmBtn").addEventListener("click", () => {
   const name = document.getElementById("guestName").value.trim();
-  if (!selectedNumber) {
-    showToast("Escolha um número primeiro ⚠️");
+  if (selectedNumbers.length === 0) {
+    showToast("Escolha ao menos um número ⚠️");
     return;
   }
   if (!name) {
@@ -56,20 +63,27 @@ document.getElementById("confirmBtn").addEventListener("click", () => {
     return;
   }
 
-  const reservaRef = ref(db, "reservas/" + selectedNumber.num);
-  set(reservaRef, {
-    nome: name,
-    numero: selectedNumber.num,
-    tamanho: selectedNumber.label
-  })
-  .then(() => {
-    showToast("Reserva confirmada com sucesso 🎉");
-    document.getElementById("guestName").value = "";
-  })
-  .catch(err => {
-    console.error("Erro ao salvar: ", err);
-    showToast("Erro ao salvar ❌");
+  let promises = [];
+  selectedNumbers.forEach(sel => {
+    const reservaRef = ref(db, "reservas/" + sel.num);
+    promises.push(set(reservaRef, {
+      nome: name,
+      numero: sel.num,
+      tamanho: sel.label
+    }));
   });
+
+  Promise.all(promises)
+    .then(() => {
+      showToast("Reserva confirmada com sucesso 🎉");
+      document.getElementById("guestName").value = "";
+      selectedNumbers = [];
+      document.querySelectorAll("button.number").forEach(b => b.classList.remove("selected"));
+    })
+    .catch(err => {
+      console.error("Erro ao salvar: ", err);
+      showToast("Erro ao salvar ❌");
+    });
 });
 
 // Painel admin em tempo real
@@ -98,6 +112,19 @@ function showToast(msg) {
   toast.style.display = "block";
   setTimeout(() => toast.style.display = "none", 3000);
 }
+
+// PIX copiar
+document.getElementById("copyPixBtn").addEventListener("click", async () => {
+  try {
+    const pixKey = document.getElementById("pixKey").textContent;
+    await navigator.clipboard.writeText(pixKey);
+    document.getElementById("pixMessage").textContent = "✅ Chave PIX copiada com sucesso!";
+    setTimeout(() => document.getElementById("pixMessage").textContent = "", 3000);
+  } catch (error) {
+    document.getElementById("pixMessage").textContent = "❌ Erro ao copiar a chave PIX.";
+    setTimeout(() => document.getElementById("pixMessage").textContent = "", 3000);
+  }
+});
 
 // Teste de conexão Firebase
 get(child(ref(db), "/"))
