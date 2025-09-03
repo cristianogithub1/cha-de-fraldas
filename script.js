@@ -22,9 +22,9 @@ let selectedNumbers = [];
 const grid = document.getElementById("number-grid");
 for (let i = 1; i <= 100; i++) {
   let label = "";
-  if (i <= 20) label = "RN";
-  else if (i <= 45) label = "P";
-  else if (i <= 80) label = "M";
+  if (i <= 8) label = "RN";
+  else if (i <= 25) label = "P";
+  else if (i <= 75) label = "M";
   else label = "G";
 
   const btn = document.createElement("button");
