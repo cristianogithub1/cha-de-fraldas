@@ -4,13 +4,12 @@ import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.
 
 // 🔥 Config Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyBCc_v7iCv_74hfA2w_ksTVW4TJnTITGlc",
-  authDomain: "cha-de-fraudas-1a5cb.firebaseapp.com",
-  databaseURL: "https://cha-de-fraudas-1a5cb-default-rtdb.firebaseio.com",
-  projectId: "cha-de-fraudas-1a5cb",
-  storageBucket: "cha-de-fraudas-1a5cb.firebasestorage.app",
-  messagingSenderId: "82003062025",
-  appId: "1:82003062025:web:05e602712c28ffcb1cb7d8"
+  apiKey: "AIzaSyBmzMQrd_WgditjKZz7tvUtiDlz9kV5Z7A",
+  authDomain: "cha-de-falda.firebaseapp.com",
+  projectId: "cha-de-falda",
+  storageBucket: "cha-de-falda.firebasestorage.app",
+  messagingSenderId: "619697256501",
+  appId: "1:619697256501:web:6396b21353f3f9fce4597c"
 };
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
@@ -127,6 +126,6 @@ document.getElementById("copyPixBtn").addEventListener("click", async () => {
 });
 
 // Teste de conexão Firebase
-get(child(ref(db), "/"))
+get(child(ref(db), "reservas"))
   .then(() => console.log("✅ Conectado ao Firebase"))
   .catch(() => console.error("❌ Erro de conexão com Firebase"));

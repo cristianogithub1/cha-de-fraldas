@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "reservas": {
+      ".read": true,        // todos podem ver as reservas
+      ".write": "auth == null"  // só gravações sem login (ou seja, qualquer pessoa)
+    },
+    ".read": false,         // protege a raiz
+    ".write": false         // impede gravação fora de /reservas
+  }
+}
